@@ -6,104 +6,103 @@
 <title>Worn Wings — NYC Pigeon Collective</title>
 <link rel="stylesheet" href="style.css">
 <style>
-.ww-hero{
-  background:var(--black);color:var(--white);
-  padding:100px 0 80px;border-bottom:1px solid var(--rule);
-}
+.ww-hero{background:var(--black);color:var(--white);padding:100px 0 80px;border-bottom:1px solid var(--rule);}
 .ww-hero-inner{max-width:1080px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;}
-.ww-h1{font-family:var(--serif);font-size:clamp(44px,6vw,76px);font-weight:900;line-height:0.95;color:var(--white);}
+.ww-h1{font-family:var(--serif);font-size:clamp(44px,6vw,76px);font-weight:900;line-height:0.95;color:var(--white);margin-bottom:20px;}
 .ww-h1 em{font-style:italic;font-weight:400;}
-.ww-hero-body{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:32px;}
+.ww-hero-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:8px;display:block;}
+.ww-hero-body{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:12px;}
+.ww-hero-status{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:16px;}
+.ww-hero-note{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.7;border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;}
+.ww-hero-note a{color:rgba(255,255,255,0.55);text-decoration:underline;}
 
-/* Intake nav */
-.intake-nav{background:var(--off-white);border-bottom:1px solid var(--rule-light);padding:0 40px;}
-.intake-nav-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:0;}
-.intake-step{
-  display:flex;align-items:center;gap:10px;
-  padding:16px 28px 16px 0;
-  font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
-  color:#aaa;position:relative;
-}
+.intake-nav{background:var(--off-white);border-bottom:1px solid var(--rule-light);padding:0 40px;overflow-x:auto;}
+.intake-nav-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;}
+.intake-step{display:flex;align-items:center;gap:10px;padding:16px 24px 16px 0;font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#aaa;white-space:nowrap;}
 .intake-step.active{color:var(--black);}
 .intake-step.done{color:var(--dim);}
-.intake-step-n{
-  width:22px;height:22px;border-radius:50%;border:1px solid currentColor;
-  display:flex;align-items:center;justify-content:center;
-  font-size:10px;flex-shrink:0;
-}
+.intake-step-n{width:22px;height:22px;border-radius:50%;border:1px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;}
 .intake-step.active .intake-step-n{background:var(--black);color:var(--white);border-color:var(--black);}
-.intake-sep{width:32px;height:1px;background:var(--rule-light);flex-shrink:0;margin:0 4px;}
+.intake-sep{width:28px;height:1px;background:var(--rule-light);flex-shrink:0;margin:0 4px;}
 
-/* Intro copy */
-.ww-intro{padding:80px 0;border-bottom:1px solid var(--rule-light);}
-.ww-intro-grid{max-width:1080px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;}
-.ww-intro-h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,44px);font-weight:400;line-height:1.15;margin-bottom:0;}
-.ww-intro-h2 em{font-style:italic;}
-.ww-intro-copy{font-size:15px;color:var(--dimmer);line-height:1.8;}
-.ww-intro-copy p{margin-bottom:18px;}
-.ww-intro-copy p:last-child{margin-bottom:0;}
-.ww-intro-copy strong{color:var(--black);font-weight:500;}
+.ww-how{padding:80px 0;border-bottom:1px solid var(--rule-light);}
+.ww-how-inner{max-width:1080px;margin:0 auto;padding:0 40px;}
+.ww-how-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:56px;}
+.ww-section-h2{font-family:var(--serif);font-size:clamp(24px,3vw,36px);font-weight:400;line-height:1.15;color:var(--black);}
+.ww-section-h2 em{font-style:italic;}
+.ww-body-copy p{font-size:15px;color:var(--dimmer);line-height:1.8;margin-bottom:16px;}
+.ww-body-copy p:last-child{margin-bottom:0;}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule-light);}
+.step{padding:32px 24px;border-right:1px solid var(--rule-light);}
+.step:last-child{border-right:none;}
+.step-num{font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:14px;display:block;}
+.step-body{font-size:14px;color:var(--dimmer);line-height:1.7;}
 
-/* Principles */
-.ww-principles{padding:0 0 80px;border-bottom:1px solid var(--rule-light);}
-.ww-principles-inner{max-width:1080px;margin:0 auto;padding:0 40px;}
-.principle{padding:40px 0;border-top:1px solid var(--rule-light);display:grid;grid-template-columns:280px 1fr;gap:60px;}
-.principle h3{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--black);margin-bottom:0;}
-.principle p{font-size:15px;color:var(--dimmer);line-height:1.8;}
-.principle a{color:var(--black);text-decoration:underline;}
+.ww-pull{background:var(--black);color:var(--white);padding:64px 0;}
+.ww-pull-inner{max-width:720px;margin:0 auto;padding:0 40px;text-align:center;}
+.ww-pull-q{font-family:var(--serif);font-size:clamp(20px,2.5vw,28px);font-style:italic;font-weight:400;color:var(--white);line-height:1.4;}
 
-/* Stories */
-.ww-stories{padding:80px 0;border-bottom:1px solid var(--rule-light);background:var(--off-white);}
+.ww-treat{padding:80px 0;border-bottom:1px solid var(--rule-light);}
+.ww-treat-inner{max-width:1080px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;}
+.treat-list{list-style:none;padding:0;}
+.treat-item{padding:16px 0;border-bottom:1px solid var(--rule-light);font-size:14px;color:var(--dimmer);line-height:1.6;display:flex;gap:12px;}
+.treat-item:first-child{border-top:1px solid var(--rule-light);}
+.treat-item::before{content:"—";color:#ccc;flex-shrink:0;}
+
+.ww-about{padding:80px 0;border-bottom:1px solid var(--rule-light);background:var(--off-white);}
+.ww-about-inner{max-width:1080px;margin:0 auto;padding:0 40px;}
+.ww-about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:64px;}
+.info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule-light);}
+.info-box{padding:32px 24px;border-right:1px solid var(--rule-light);}
+.info-box:last-child{border-right:none;}
+.info-icon{font-size:18px;margin-bottom:14px;display:block;}
+.info-title{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--black);margin-bottom:8px;}
+.info-body{font-size:13px;color:var(--dimmer);line-height:1.65;}
+.info-contact{max-width:1080px;margin:32px auto 0;padding:0 40px;font-size:13px;color:var(--dim);line-height:1.7;}
+.info-contact a{color:var(--black);text-decoration:underline;}
+
+.ww-stories{padding:80px 0;border-bottom:1px solid var(--rule-light);}
 .ww-stories-inner{max-width:1080px;margin:0 auto;padding:0 40px;}
 .story-card{display:grid;grid-template-columns:1fr 1fr;gap:64px;padding:64px 0;border-top:1px solid var(--rule-light);align-items:start;}
 .story-card:first-child{border-top:none;padding-top:40px;}
-.story-img{background:var(--rule);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;}
-.story-img-text{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.3);text-align:center;letter-spacing:0.12em;text-transform:uppercase;}
+.story-portrait{aspect-ratio:3/4;overflow:hidden;}
+.story-portrait svg{width:100%;height:100%;display:block;}
 .story-tag{font-family:var(--mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;display:block;}
 .story-name{font-family:var(--serif);font-size:40px;font-weight:400;font-style:italic;color:var(--black);margin-bottom:4px;}
-.story-meta{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:0.1em;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--rule-light);}
+.story-meta{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:0.08em;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--rule-light);}
 .story-pull{font-family:var(--serif);font-size:18px;font-style:italic;color:var(--black);line-height:1.4;margin-bottom:16px;}
 .story-body{font-size:14px;color:var(--dimmer);line-height:1.8;margin-bottom:14px;}
 .story-status{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);border-top:1px solid var(--rule-light);padding-top:14px;margin-top:8px;}
 
-/* Intake form */
 .ww-form{padding:80px 0;}
 .ww-form-inner{max-width:1080px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;}
-.ww-form-h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,44px);font-weight:400;line-height:1.1;margin-bottom:16px;}
+.ww-form-h2{font-family:var(--serif);font-size:clamp(24px,3vw,38px);font-weight:400;line-height:1.1;margin-bottom:16px;color:var(--black);}
 .ww-form-h2 em{font-style:italic;}
-.ww-form-note{font-size:13px;color:var(--dim);line-height:1.7;}
+.ww-form-note{font-size:13px;color:var(--dim);line-height:1.75;}
 .ww-form-note p{margin-bottom:8px;}
-
-/* Steps */
 .form-steps{display:none;}
 .form-steps.active{display:block;}
-.form-step-title{font-family:var(--sans);font-size:18px;font-weight:500;color:var(--black);margin-bottom:24px;}
+.form-step-title{font-size:18px;font-weight:500;color:var(--black);margin-bottom:24px;}
 .f-field{margin-bottom:18px;}
 .f-field label{display:block;font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:6px;}
-.f-field input,.f-field select,.f-field textarea{
-  width:100%;border:1px solid var(--rule-light);padding:11px 14px;
-  font-family:var(--sans);font-size:14px;color:var(--black);
-  outline:none;background:var(--white);appearance:none;-webkit-appearance:none;
-  transition:border-color 0.15s;border-radius:0;
-}
+.f-field input,.f-field select,.f-field textarea{width:100%;border:1px solid var(--rule-light);padding:11px 14px;font-family:var(--sans);font-size:14px;color:var(--black);outline:none;background:var(--white);appearance:none;-webkit-appearance:none;transition:border-color 0.15s;border-radius:0;}
 .f-field input:focus,.f-field select:focus,.f-field textarea:focus{border-color:var(--black);}
 .f-field input::placeholder,.f-field textarea::placeholder{color:#bbb;}
-.f-field textarea{min-height:80px;resize:vertical;line-height:1.6;}
+.f-field textarea{min-height:90px;resize:vertical;line-height:1.6;}
 .f-field .hint{font-size:11px;color:var(--dim);margin-top:5px;line-height:1.5;}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .form-btns{display:flex;gap:10px;margin-top:24px;}
-.form-confirmation{display:none;text-align:center;padding:40px 0;}
+.form-legal{font-size:11px;color:var(--dim);margin-top:12px;line-height:1.6;}
+.form-confirmation{display:none;padding:40px 0;}
 .form-confirmation.active{display:block;}
 .form-confirmation h3{font-family:var(--serif);font-size:28px;font-style:italic;font-weight:400;color:var(--black);margin-bottom:12px;}
-.form-confirmation p{font-size:14px;color:var(--dimmer);line-height:1.7;max-width:360px;margin:0 auto 24px;}
+.form-confirmation p{font-size:14px;color:var(--dimmer);line-height:1.7;margin-bottom:16px;}
 .form-ref{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:0.12em;}
 
 @media(max-width:768px){
-  .ww-hero-inner,.ww-intro-grid,.ww-form-inner{grid-template-columns:1fr;gap:40px;}
-  .principle{grid-template-columns:1fr;}
+  .ww-hero-inner,.ww-how-grid,.ww-treat-inner,.ww-about-grid,.ww-form-inner{grid-template-columns:1fr;gap:40px;}
+  .steps-grid,.info-grid{grid-template-columns:1fr 1fr;}
+  .step,.info-box{border-right:none;border-bottom:1px solid var(--rule-light);}
   .story-card{grid-template-columns:1fr;}
-  .f-row{grid-template-columns:1fr;}
-  .intake-nav{padding:0 20px;overflow-x:auto;}
 }
 </style>
 </head>
@@ -112,88 +111,159 @@
 <div class="banner">Every pigeon counted. Every injury documented. <a href="#intake">Start an intake →</a></div>
 
 <nav class="nav">
-  <div class="nav-logo">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+  <a href="index.html" class="nav-logo" style="text-decoration:none;">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:18px;fill:white;flex-shrink:0;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
     NYC Pigeon Collective
-  </div>
+  </a>
   <ul class="nav-links">
-    <li><a href="index.html">Manifesto</a></li>
+    <li><a href="index.html">Home</a></li>
     <li><a href="worn-wings.html" class="active">Worn Wings</a></li>
     <li><a href="quiz.html">The Quiz</a></li>
     <li><a href="index.html#join" class="nav-cta">Get Involved</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="ww-hero">
   <div class="ww-hero-inner">
     <div>
-      <span class="hero-overline fade-up d1" style="font-family:var(--mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:20px;display:block;">Pigeon Repair Program · NYC Pigeon Collective</span>
-      <h1 class="ww-h1 fade-up d2">We fix what<br>the city has <em>broken.</em></h1>
+      <span class="ww-hero-tag">Worn Wings · NYC Pigeon Collective · Est. 2025</span>
+      <h1 class="ww-h1">We fix what<br>the city has <em>broken.</em></h1>
     </div>
-    <div class="fade-up d3">
-      <p class="ww-hero-body">Spike wounds. Leg-band necrosis. Netting entanglement. Grain laced with contraceptives. These are not accidents — they are the predictable outcome of a city that chose aesthetics over accountability. We are here to repair the damage, one bird at a time.</p>
-      <a href="#intake" class="btn btn-white">Start an intake ↓</a>
+    <div>
+      <p class="ww-hero-body">Spike wounds. Malnutrition from contaminated grain. Leg-band injuries. Netting entanglement. These are not accidents — they are the predictable outcome of a city that chose aesthetics over accountability. We are here to repair the damage, one bird at a time.</p>
+      <p class="ww-hero-status">Intake open · Spring 2026</p>
+      <p class="ww-hero-note">Please note: We can repair many — but not all — injuries. Before bringing in a bird, review our current list of cases beyond our capacity. For critical emergencies, contact <a href="#">Wild Bird Fund NYC</a> directly.</p>
     </div>
   </div>
 </section>
 
-<!-- INTAKE STEP NAV -->
 <div class="intake-nav" id="intake-nav">
   <div class="intake-nav-inner">
-    <div class="intake-step active" id="step-nav-1"><div class="intake-step-n">1</div>Bird info</div>
+    <div class="intake-step active" id="step-nav-1"><div class="intake-step-n">1</div>Injury type</div>
     <div class="intake-sep"></div>
-    <div class="intake-step" id="step-nav-2"><div class="intake-step-n">2</div>Injury details</div>
+    <div class="intake-step" id="step-nav-2"><div class="intake-step-n">2</div>Location</div>
     <div class="intake-sep"></div>
-    <div class="intake-step" id="step-nav-3"><div class="intake-step-n">3</div>Drop-off / collection</div>
+    <div class="intake-step" id="step-nav-3"><div class="intake-step-n">3</div>Your details</div>
     <div class="intake-sep"></div>
     <div class="intake-step" id="step-nav-4"><div class="intake-step-n">4</div>Confirmation</div>
   </div>
 </div>
 
-<!-- INTRO COPY -->
-<section class="ww-intro">
-  <div class="ww-intro-grid">
+<section class="ww-how" id="how">
+  <div class="ww-how-inner">
+    <div class="ww-how-grid">
+      <div>
+        <span class="overline">How it works</span>
+        <h2 class="ww-section-h2">What the Worn Wings <em>program does</em></h2>
+      </div>
+      <div class="ww-body-copy">
+        <p>When you bring us a bird, we assess its condition, document the cause of harm, and begin a course of treatment. Our volunteer rehabilitators — trained in avian triage, wound care, and nutritional recovery — will nurse the bird back to health and return it to its territory. The whole process takes, on average, four to eight weeks.</p>
+        <p>We ask one thing of you in return: tell us where and how you found the bird. Every intake form is a data point. We are building the evidence base that this city refuses to compile itself.</p>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <div class="step"><span class="step-num">01 · Find</span><p class="step-body">A bird in distress. Look for signs: inability to fly, visible wound, lethargic behaviour, entangled leg band, trembling.</p></div>
+      <div class="step"><span class="step-num">02 · Contain</span><p class="step-body">Use a cardboard box with air holes. Do not offer water or food — well-meaning feeding can cause aspiration in injured birds.</p></div>
+      <div class="step"><span class="step-num">03 · Submit</span><p class="step-body">Fill out the intake form on this page or drop in to one of our three intake locations across the boroughs.</p></div>
+      <div class="step"><span class="step-num">04 · Return</span><p class="step-body">You'll receive updates. When the bird is ready, we release it at or near its home territory.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="ww-pull">
+  <div class="ww-pull-inner">
+    <p class="ww-pull-q">"You cannot protect what you have been taught to despise. Change the story, and everything else becomes possible."</p>
+  </div>
+</div>
+
+<section class="ww-treat" id="treat">
+  <div class="ww-treat-inner">
     <div>
-      <h2 class="ww-intro-h2">We can repair many, <em>but not all,</em> injuries.</h2>
+      <span class="overline">What we treat</span>
+      <h2 class="ww-section-h2">The injuries <em>are not random</em></h2>
+      <p style="font-size:15px;color:var(--dimmer);line-height:1.8;margin-top:16px;">Every wound we treat is traceable back to a policy choice. Spike strips are a planning decision. Contaminated grain is a procurement decision. Leg bands left until they cut through flesh are an enforcement failure. We treat the injury. We name the cause.</p>
     </div>
-    <div class="ww-intro-copy">
-      <p>You can start your intake here. Once we receive the bird, it takes us <strong>four to eight weeks on average</strong> to rehabilitate and return it to its territory.</p>
-      <p>Please do not offer food or water before bringing the bird in — well-meaning feeding can cause aspiration in injured birds. A cardboard box with air holes is all you need.</p>
-      <p>Our goal is to treat everything we can, but each case is different. Before submitting your intake, please note that for life-threatening emergencies, contact <a href="#">Wild Bird Fund NYC</a> directly.</p>
-    </div>
+    <ul class="treat-list">
+      <li class="treat-item">Spike-related lacerations and wing injuries — treatable in most cases</li>
+      <li class="treat-item">Leg-band constriction and necrosis — early intervention critical</li>
+      <li class="treat-item">Netting entanglement — cuts off circulation; time-sensitive</li>
+      <li class="treat-item">Malnutrition from laced grain — supportive care, variable outcomes</li>
+      <li class="treat-item">Secondary poisoning from pest control — supportive care, variable outcomes</li>
+      <li class="treat-item">Severe internal injuries from impact — assessed case by case; some beyond our capacity</li>
+      <li class="treat-item">Advanced aspergillosis — palliative care only; refer to specialist</li>
+    </ul>
   </div>
 </section>
 
-<!-- PRINCIPLES -->
-<section class="ww-principles" id="how">
-  <div class="ww-principles-inner">
-    <div class="principle">
-      <h3>Repaired birds may not look like new.</h3>
-      <p>We will always aim to restore full function. But a bird that has lost a toe to a constricting leg band, or bears scar tissue from a spike wound, carries that history in its body. We do not consider this a failure. We consider it evidence. These birds return to the city marked by what the city did to them — and they return anyway. Where full function cannot be restored, we assess quality of life honestly and maintain sanctuary placements for birds who cannot safely return to the street.</p>
+<section class="ww-about">
+  <div class="ww-about-inner">
+    <div class="ww-about-grid">
+      <div>
+        <span class="overline">About repair</span>
+        <h2 class="ww-section-h2">Repaired birds may not <em>look like new.</em></h2>
+      </div>
+      <div class="ww-body-copy">
+        <p>We will always aim to restore full function. But a bird that has lost a toe to a leg band, or bears scar tissue from a spike wound, carries that history in its body. We do not consider this a failure. We consider it evidence. These birds return to the city marked by what the city did to them — and they return anyway. That is, in our view, the more relevant fact about pigeon character.</p>
+        <p>Where we cannot fully restore function, we assess quality of life honestly. Some birds thrive in managed environments. We maintain relationships with permanent sanctuary placements for birds who cannot safely return to the street.</p>
+      </div>
     </div>
-    <div class="principle">
-      <h3>Rehabilitation is always free.</h3>
-      <p>The city created these conditions. We do not charge the birds for its mistakes. All rehabilitation, care, and territory return is provided at no cost. We do ask for a voluntary contribution to cover feed and veterinary supplies if you are able — but intake will never be conditional on it.</p>
+    <div class="info-grid">
+      <div class="info-box"><span class="info-icon">🪶</span><div class="info-title">Intake is free</div><p class="info-body">The city created these conditions. We do not charge the birds for its mistakes. All rehabilitation is provided at no cost to the finder.</p></div>
+      <div class="info-box"><span class="info-icon">📍</span><div class="info-title">Three intake locations</div><p class="info-body">Brooklyn, upper Manhattan, and Jackson Heights, Queens. Mail-in intake available for outer boroughs.</p></div>
+      <div class="info-box"><span class="info-icon">📋</span><div class="info-title">Every case is documented</div><p class="info-body">Your intake report becomes part of our injury dataset. We publish it annually. We share it with city council. Every bird counted.</p></div>
+      <div class="info-box"><span class="info-icon">🔄</span><div class="info-title">If we can't repair</div><p class="info-body">You decide what happens next. We will never dispose of a bird without your consent. Sanctuary placement is available.</p></div>
     </div>
-    <div class="principle">
-      <h3>If we can't rehabilitate your bird, what would you like us to do?</h3>
-      <p>If the bird cannot be returned to the street, you get to decide what happens next — a permanent sanctuary placement or, in cases of irreversible suffering, a humane end. We will never make that decision without your consent.</p>
-    </div>
+    <p class="info-contact">Questions? Visit our <a href="#">Help Centre</a> or write to us at <a href="mailto:repair@nycpigeoncollective.org">repair@nycpigeoncollective.org</a>. We are volunteers, and we will write back.</p>
   </div>
 </section>
 
-<!-- SURVIVOR STORIES -->
 <section class="ww-stories" id="stories">
   <div class="ww-stories-inner">
     <span class="overline">Survivor stories</span>
 
     <div class="story-card">
-      <div class="story-img"><div class="story-img-text">Gerald<br>Canal St · March 2025</div></div>
+      <div class="story-portrait">
+        <svg viewBox="0 0 360 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="360" height="480" fill="#111"/>
+          <rect x="30" y="40" width="60" height="80" fill="#1a1a2a" opacity="0.6"/>
+          <rect x="40" y="52" width="18" height="24" fill="#2a2a3a" opacity="0.5"/>
+          <rect x="64" y="52" width="18" height="24" fill="#333" opacity="0.5"/>
+          <rect x="240" y="20" width="90" height="130" fill="#1a1a2a" opacity="0.5"/>
+          <rect x="252" y="34" width="24" height="36" fill="#2a2a3a" opacity="0.4"/>
+          <rect x="284" y="34" width="24" height="36" fill="#333" opacity="0.4"/>
+          <rect x="0" y="340" width="360" height="12" fill="#2a2820"/>
+          <g stroke="#6a6050" stroke-width="1.2">
+            <line x1="22" y1="340" x2="22" y2="318"/><line x1="42" y1="340" x2="42" y2="318"/>
+            <line x1="62" y1="340" x2="62" y2="318"/><line x1="82" y1="340" x2="82" y2="318"/>
+            <line x1="102" y1="340" x2="102" y2="318"/><line x1="122" y1="340" x2="122" y2="318"/>
+            <line x1="186" y1="340" x2="186" y2="318"/><line x1="226" y1="340" x2="226" y2="318"/>
+            <line x1="266" y1="340" x2="266" y2="318"/><line x1="306" y1="340" x2="306" y2="318"/>
+          </g>
+          <ellipse cx="185" cy="300" rx="62" ry="44" fill="#b0a080"/>
+          <ellipse cx="185" cy="300" rx="48" ry="33" fill="#c0b090"/>
+          <ellipse cx="200" cy="270" rx="28" ry="22" fill="#989870"/>
+          <ellipse cx="202" cy="268" rx="20" ry="15" fill="#a8b080" opacity="0.65"/>
+          <circle cx="218" cy="256" r="22" fill="#b0a080"/>
+          <circle cx="218" cy="255" r="17" fill="#c0b090"/>
+          <circle cx="224" cy="249" r="6.5" fill="#e8c060"/>
+          <circle cx="225" cy="249" r="3.8" fill="#111"/>
+          <circle cx="226" cy="248" r="1.3" fill="#f0e8c0"/>
+          <path d="M 230,251 L 244,253 L 230,256 Z" fill="#c0a860"/>
+          <path d="M 140,296 Q 162,279 212,290 Q 188,314 140,320 Z" fill="#988870" opacity="0.75"/>
+          <path d="M 122,306 Q 108,318 116,336 Q 130,320 146,316 Z" fill="#888060"/>
+          <rect x="152" y="298" width="28" height="11" rx="2" fill="#f5f0e8" opacity="0.9"/>
+          <line x1="166" y1="298" x2="166" y2="309" stroke="#d06060" stroke-width="2"/>
+          <line x1="152" y1="303" x2="180" y2="303" stroke="#d06060" stroke-width="1.2"/>
+          <line x1="178" y1="340" x2="174" y2="352" stroke="#c0a060" stroke-width="2.5"/>
+          <line x1="194" y1="340" x2="198" y2="352" stroke="#c0a060" stroke-width="2.5"/>
+          <text x="180" y="408" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#6a6050" letter-spacing="2">CANAL ST · MANHATTAN</text>
+          <text x="180" y="426" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#4a4030" letter-spacing="1">ADMITTED: MARCH 2025</text>
+        </svg>
+      </div>
       <div>
-        <span class="story-tag">Survivor story · No. 001</span>
+        <span class="story-tag">Worn Wings · Case No. 001</span>
         <div class="story-name">Gerald</div>
-        <div class="story-meta">Canal St Bridge, Manhattan · Wing laceration, Type-4 spike strip · Admitted March 2025</div>
+        <div class="story-meta">Canal St Bridge, Manhattan · Wing laceration, Type-4 spike strip · March 2025</div>
         <p class="story-pull">"He came in on a Tuesday. Left wing, three punctures. He was still trying to fly."</p>
         <p class="story-body">Gerald was found by a union volunteer on the Canal Street overpass, where the building manager had installed a Type-4 stainless spike strip across the full length of the eastern ledge. Gerald had been roosting there for six years. He didn't know it was a ledge he wasn't allowed to use anymore.</p>
         <p class="story-body">The lacerations were cleaned. The wing was splinted with a balsa strip and medical tape. He spent eleven days in a recovery box in a Chinatown apartment. On the twelfth day, he flew to the windowsill. On the fourteenth, he was gone. He still comes back on Thursdays. We think he remembers.</p>
@@ -201,27 +271,88 @@
       </div>
     </div>
 
-    <div class="story-card">
-      <div>
-        <span class="story-tag">Survivor story · No. 002</span>
+    <div class="story-card" style="direction:rtl;">
+      <div style="direction:ltr;">
+        <span class="story-tag">Worn Wings · Case No. 002</span>
         <div class="story-name">Marta</div>
-        <div class="story-meta">Fulton St, Brooklyn · Grain toxicosis, methyl anthranilate · Admitted July 2025</div>
+        <div class="story-meta">Fulton St, Brooklyn · Grain toxicosis, methyl anthranilate · July 2025</div>
         <p class="story-pull">"The grain looked normal. It always does."</p>
         <p class="story-body">Methyl anthranilate is a bird repellent applied to grain to deter feeding. It is legal. It causes disorientation, respiratory distress, and in sufficient quantities, organ failure. Marta weighed 280 grams when she arrived. She should have weighed 340.</p>
-        <p class="story-body">Recovery took three weeks. Electrolytes. Quiet. Seed that was exactly what it appeared to be. The volunteer who brought her in has been monitoring the Fulton Street loading dock every week since. The property management company has not responded to two letters from the union. Marta is healthy. The loading dock is still active. The third letter is being prepared.</p>
+        <p class="story-body">Recovery took three weeks. Electrolytes. Quiet. Seed that was exactly what it appeared to be. Marta is healthy. The loading dock is still active. The third letter is being prepared.</p>
         <div class="story-status">✓ Repaired · Case ongoing — August 2025</div>
       </div>
-      <div class="story-img"><div class="story-img-text">Marta<br>Fulton St · July 2025</div></div>
+      <div class="story-portrait" style="direction:ltr;">
+        <svg viewBox="0 0 360 480" fill="none">
+          <rect width="360" height="480" fill="#0e0c08"/>
+          <rect x="0" y="340" width="360" height="4" fill="#1a1810"/>
+          <g fill="#6a5828" opacity="0.4">
+            <circle cx="55" cy="362" r="3"/><circle cx="80" cy="372" r="2.5"/>
+            <circle cx="110" cy="356" r="2.5"/><circle cx="140" cy="370" r="3"/>
+            <circle cx="192" cy="375" r="2.5"/><circle cx="242" cy="379" r="2.5"/>
+          </g>
+          <g stroke="#a03030" stroke-width="1.2" opacity="0.6">
+            <line x1="51" y1="358" x2="59" y2="366"/><line x1="59" y1="358" x2="51" y2="366"/>
+            <line x1="136" y1="366" x2="144" y2="374"/><line x1="144" y1="366" x2="136" y2="374"/>
+          </g>
+          <ellipse cx="175" cy="306" rx="52" ry="36" fill="#686050"/>
+          <ellipse cx="175" cy="306" rx="39" ry="26" fill="#787060"/>
+          <ellipse cx="188" cy="278" rx="22" ry="18" fill="#605850"/>
+          <ellipse cx="190" cy="276" rx="15" ry="11" fill="#708070" opacity="0.55"/>
+          <circle cx="202" cy="264" r="17" fill="#686050"/>
+          <circle cx="202" cy="263" r="14" fill="#787060"/>
+          <circle cx="208" cy="257" r="5" fill="#c0a030"/>
+          <circle cx="209" cy="257" r="3" fill="#0e0c08"/>
+          <path d="M 214,259 L 226,261 L 214,264 Z" fill="#a09050"/>
+          <path d="M 134,302 Q 151,288 192,298 Q 170,317 134,322 Z" fill="#585040" opacity="0.72"/>
+          <path d="M 122,310 Q 108,322 116,338 Q 128,322 142,318 Z" fill="#585848"/>
+          <line x1="168" y1="340" x2="165" y2="352" stroke="#908030" stroke-width="2"/>
+          <line x1="180" y1="340" x2="184" y2="352" stroke="#908030" stroke-width="2"/>
+          <line x1="175" y1="278" x2="175" y2="250" stroke="#f0ede8" stroke-width="0.8" opacity="0.25" stroke-dasharray="3,3"/>
+          <circle cx="175" cy="248" r="4" fill="#f0ede8" opacity="0.2"/>
+          <text x="180" y="408" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#6a6050" letter-spacing="2">FULTON ST · BROOKLYN</text>
+          <text x="180" y="426" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#4a4030" letter-spacing="1">ADMITTED: JULY 2025</text>
+        </svg>
+      </div>
     </div>
 
     <div class="story-card">
-      <div class="story-img"><div class="story-img-text">Percy<br>14th St Station · Oct 2025</div></div>
+      <div class="story-portrait">
+        <svg viewBox="0 0 360 480" fill="none">
+          <rect width="360" height="480" fill="#1a1818"/>
+          <g fill="#1e1c18" opacity="0.9">
+            <rect x="0" y="0" width="360" height="36"/><rect x="0" y="40" width="360" height="36"/>
+            <rect x="0" y="80" width="360" height="36"/><rect x="0" y="120" width="360" height="36"/>
+          </g>
+          <rect x="0" y="340" width="360" height="10" fill="#2a2820"/>
+          <g fill="#222018">
+            <rect x="0" y="350" width="28" height="9"/><rect x="32" y="350" width="28" height="9"/>
+            <rect x="64" y="350" width="28" height="9"/><rect x="96" y="350" width="28" height="9"/>
+            <rect x="128" y="350" width="28" height="9"/><rect x="192" y="350" width="28" height="9"/>
+            <rect x="256" y="350" width="28" height="9"/><rect x="320" y="350" width="40" height="9"/>
+          </g>
+          <ellipse cx="175" cy="298" rx="58" ry="40" fill="#9a9280"/>
+          <ellipse cx="175" cy="298" rx="45" ry="30" fill="#aaa290"/>
+          <ellipse cx="190" cy="268" rx="25" ry="21" fill="#929878"/>
+          <circle cx="206" cy="254" r="20" fill="#9a9280"/>
+          <circle cx="206" cy="253" r="16" fill="#aaa290"/>
+          <circle cx="213" cy="247" r="7" fill="#f0d040"/>
+          <circle cx="214" cy="247" r="4.2" fill="#1a1808"/>
+          <circle cx="215" cy="246" r="1.6" fill="#fff8e0"/>
+          <path d="M 219,249 L 233,251 L 219,254 Z" fill="#c8b060"/>
+          <path d="M 130,294 Q 152,278 198,288 Q 175,308 130,314 Z" fill="#888078" opacity="0.75"/>
+          <path d="M 118,302 Q 104,314 112,330 Q 125,316 140,312 Z" fill="#888070"/>
+          <line x1="168" y1="338" x2="164" y2="350" stroke="#d0a860" stroke-width="2.5"/>
+          <line x1="182" y1="338" x2="187" y2="350" stroke="#d0a860" stroke-width="2.5"/>
+          <text x="180" y="408" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#6a6050" letter-spacing="2">14TH ST STATION · NYC</text>
+          <text x="180" y="426" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#4a4030" letter-spacing="1">ADMITTED: OCTOBER 2025</text>
+        </svg>
+      </div>
       <div>
-        <span class="story-tag">Survivor story · No. 003</span>
+        <span class="story-tag">Worn Wings · Case No. 003</span>
         <div class="story-name">Percy</div>
-        <div class="story-meta">14th St–Union Square Station · Net entanglement · Admitted October 2025</div>
+        <div class="story-meta">14th St–Union Square Station · Net entanglement · October 2025</div>
         <p class="story-pull">"He came in tangled. He left strutting. We are not exaggerating."</p>
-        <p class="story-body">Percy was found caught in a section of anti-nesting net that had come loose from the ceiling grid of the uptown 4/5/6 platform at 14th Street. He had been there, best estimates suggest, since the previous evening's rush hour. He had eaten two french fries through the netting. The MTA worker cut him free and called the union hotline.</p>
+        <p class="story-body">Percy was found caught in a section of anti-nesting net that had come loose from the ceiling grid of the uptown 4/5/6 platform at 14th Street. He had been there since the previous evening's rush hour. He had eaten two french fries through the netting. The MTA worker cut him free and called the union hotline.</p>
         <p class="story-body">No lacerations. Minor wing bruising. Two days of rest. Three meals a day. Water that was not puddle water. He was back at 14th Street by the following Tuesday. The MTA worker left him half a bagel.</p>
         <div class="story-status">✓ Fully recovered — October 2025</div>
       </div>
@@ -229,135 +360,79 @@
   </div>
 </section>
 
-<!-- INTAKE FORM -->
 <section class="ww-form" id="intake">
   <div class="ww-form-inner">
     <div>
-      <span class="overline">Start an intake</span>
-      <h2 class="ww-form-h2">To get started, tell us <em>about the bird.</em></h2>
+      <span class="overline">Submit a Worn Wings intake</span>
+      <h2 class="ww-form-h2">Tell us about the bird.<br><em>We'll take it from there.</em></h2>
       <div class="ww-form-note">
-        <p>Location data helps us map harm patterns across the city. It is anonymised in our annual Harm Report.</p>
-        <p>Once you submit, a volunteer will contact you within 4 hours. Care is always free.</p>
+        <p>Location data helps us map harm patterns across the city. It is anonymised in our annual Harm Report. We do not share personal information.</p>
+        <p>Once you submit, a volunteer will contact you within 4 hours. Intake is always free.</p>
       </div>
     </div>
     <div>
-      <!-- Step 1 -->
       <div class="form-steps active" id="form-step-1">
-        <div class="form-step-title">Bird info</div>
+        <div class="form-step-title">Injury type</div>
         <div class="f-field">
-          <label>Injury type</label>
+          <label>Select injury type</label>
           <select id="f-injury">
             <option value="">Select</option>
-            <option>Spike strip laceration</option>
-            <option>Net entanglement</option>
-            <option>Grain toxicosis (suspected)</option>
-            <option>Leg-band necrosis</option>
-            <option>Deterrent gel contact</option>
-            <option>Wing injury (other)</option>
-            <option>Unknown</option>
+            <option>Spike / anti-roosting injury</option>
+            <option>Leg band constriction</option>
+            <option>Netting entanglement</option>
+            <option>Suspected grain poisoning</option>
+            <option>Secondary pesticide poisoning</option>
+            <option>Impact / trauma</option>
+            <option>Respiratory illness</option>
+            <option>Unknown / other</option>
           </select>
         </div>
-        <div class="f-field">
-          <label>Condition of bird</label>
-          <select id="f-condition">
-            <option value="">Select</option>
-            <option>Alert but cannot fly</option>
-            <option>Disoriented / unresponsive</option>
-            <option>Bleeding actively</option>
-            <option>Tangled / trapped</option>
-            <option>Stable but needs care</option>
-          </select>
-        </div>
-        <div class="f-row">
-          <div class="f-field">
-            <label>Borough where found</label>
-            <select id="f-borough">
-              <option value="">Select</option>
-              <option>Manhattan</option>
-              <option>Brooklyn</option>
-              <option>Queens</option>
-              <option>The Bronx</option>
-              <option>Staten Island</option>
-            </select>
-          </div>
-          <div class="f-field">
-            <label>Street or intersection <span style="font-weight:300;color:#aaa;">(optional)</span></label>
-            <input type="text" id="f-street" placeholder="e.g. W 23rd St & 8th Ave">
-          </div>
-        </div>
-        <p class="hint" style="font-size:11px;color:var(--dim);margin-top:-8px;margin-bottom:16px;">Location data helps us map harm patterns across the city. It is anonymised.</p>
         <div class="form-btns">
-          <button class="btn btn-black" onclick="nextStep(2)">Next: Injury details →</button>
+          <button class="btn btn-black" onclick="nextStep(2)">Next: Location →</button>
         </div>
       </div>
 
-      <!-- Step 2 -->
       <div class="form-steps" id="form-step-2">
-        <div class="form-step-title">Injury details</div>
+        <div class="form-step-title">Where did you find the bird?</div>
         <div class="f-field">
-          <label>Describe what you observed</label>
-          <textarea id="f-notes" placeholder="Where was the bird? What does the injury look like? Any infrastructure nearby — spikes, netting, gel?"></textarea>
-        </div>
-        <div class="f-field">
-          <label>How long ago did you find the bird?</label>
-          <select id="f-time">
-            <option value="">Select</option>
-            <option>Within the last hour</option>
-            <option>1–6 hours ago</option>
-            <option>6–24 hours ago</option>
-            <option>More than a day ago</option>
+          <label>Borough</label>
+          <select id="f-borough">
+            <option value="">Select borough</option>
+            <option>Manhattan</option><option>Brooklyn</option>
+            <option>Queens</option><option>The Bronx</option><option>Staten Island</option>
           </select>
         </div>
         <div class="f-field">
-          <label>Is the bird currently secured?</label>
-          <select id="f-secured">
-            <option value="">Select</option>
-            <option>Yes — in a box with air holes</option>
-            <option>Yes — contained but not ideal</option>
-            <option>No — still at the site</option>
-            <option>No — bird has moved</option>
-          </select>
+          <label>Street or intersection (optional)</label>
+          <input type="text" id="f-street" placeholder="e.g. W 23rd St & 8th Ave">
+          <p class="hint">Location data is anonymised in our annual Harm Report.</p>
+        </div>
+        <div class="f-field">
+          <label>What caused this? (your best guess)</label>
+          <textarea id="f-cause" placeholder="Describe what you saw — infrastructure nearby, condition of the bird, anything unusual"></textarea>
         </div>
         <div class="form-btns">
           <button class="btn btn-outline-black" onclick="nextStep(1)">← Back</button>
-          <button class="btn btn-black" onclick="nextStep(3)">Next: Drop-off →</button>
+          <button class="btn btn-black" onclick="nextStep(3)">Next: Your details →</button>
         </div>
       </div>
 
-      <!-- Step 3 -->
       <div class="form-steps" id="form-step-3">
-        <div class="form-step-title">Drop-off / collection</div>
-        <div class="f-field">
-          <label>Your name</label>
-          <input type="text" id="f-name" placeholder="Full name">
-        </div>
+        <div class="form-step-title">Your details</div>
         <div class="f-field">
           <label>Your email</label>
           <input type="email" id="f-email" placeholder="you@email.com">
         </div>
-        <div class="f-field">
-          <label>Your phone (optional)</label>
-          <input type="tel" id="f-phone" placeholder="(212) 555-0100">
-        </div>
-        <div class="f-field">
-          <label>Preferred handoff</label>
-          <select id="f-handoff">
-            <option value="">Select</option>
-            <option>I will drop the bird off at a volunteer location</option>
-            <option>I need a volunteer to collect from me</option>
-            <option>I can hold the bird for 24 hours</option>
-          </select>
-        </div>
         <div class="form-btns">
           <button class="btn btn-outline-black" onclick="nextStep(2)">← Back</button>
-          <button class="btn btn-black" onclick="submitIntake()">Submit intake →</button>
+          <button class="btn btn-black" onclick="submitIntake()">Begin intake →</button>
         </div>
+        <p class="form-legal">By submitting, you agree to let us use anonymised location data in our annual Harm Report. We do not share personal information.</p>
       </div>
 
-      <!-- Step 4: Confirmation -->
       <div class="form-confirmation" id="form-step-4">
         <h3>Intake received.</h3>
-        <p>A union volunteer will contact you within 4 hours. Keep the bird in a dark, quiet, ventilated space. Do not offer food or water.</p>
+        <p>A Worn Wings volunteer will contact you within 4 hours. Keep the bird in a dark, quiet, ventilated space. Do not offer food or water.</p>
         <p class="form-ref" id="form-ref-num">Ref: NYC-WW-000000</p>
         <br>
         <a href="#stories" class="btn btn-outline-black">Read survivor stories</a>
@@ -373,11 +448,12 @@
       <p>We have been awake with this city since the beginning. We are not asking for sympathy. We are asking for recognition that we belong here.</p>
     </div>
     <div>
-      <div class="footer-col-head">Repair</div>
+      <div class="footer-col-head">Worn Wings</div>
       <ul class="footer-links">
         <li><a href="#intake">Start an intake</a></li>
         <li><a href="#stories">Survivor stories</a></li>
         <li><a href="#how">How it works</a></li>
+        <li><a href="#treat">What we treat</a></li>
       </ul>
     </div>
     <div>
@@ -391,9 +467,9 @@
     <div>
       <div class="footer-col-head">About</div>
       <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
         <li><a href="index.html#join">Join the union</a></li>
-        <li><a href="worn-wings.html">Worn Wings program</a></li>
-        <li><a href="quiz.html">Are you a pigeon?</a></li>
+        <li><a href="mailto:repair@nycpigeoncollective.org">Contact us</a></li>
       </ul>
     </div>
   </div>
@@ -405,28 +481,32 @@
 
 <script>
 let currentStep = 1;
-
-function nextStep(n) {
-  document.getElementById('form-step-' + currentStep).classList.remove('active');
-  document.getElementById('step-nav-' + currentStep).classList.remove('active');
-  document.getElementById('step-nav-' + currentStep).classList.add('done');
-  currentStep = n;
-  if (n <= 3) {
-    document.getElementById('form-step-' + n).classList.add('active');
-    document.getElementById('step-nav-' + n).classList.add('active');
+function nextStep(n){
+  const cur=document.getElementById('form-step-'+currentStep);
+  const curNav=document.getElementById('step-nav-'+currentStep);
+  if(cur)cur.classList.remove('active');
+  if(curNav){curNav.classList.remove('active');curNav.classList.add('done');}
+  currentStep=n;
+  if(n<=3){
+    const next=document.getElementById('form-step-'+n);
+    const nextNav=document.getElementById('step-nav-'+n);
+    if(next)next.classList.add('active');
+    if(nextNav)nextNav.classList.add('active');
   }
-  document.getElementById('intake-nav').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('intake-nav').scrollIntoView({behavior:'smooth',block:'start'});
 }
-
-function submitIntake() {
-  const ref = 'NYC-WW-' + Date.now().toString().slice(-6);
-  document.getElementById('form-ref-num').textContent = 'Ref: ' + ref;
-  document.getElementById('form-step-3').classList.remove('active');
-  document.getElementById('step-nav-3').classList.remove('active');
-  document.getElementById('step-nav-3').classList.add('done');
-  document.getElementById('step-nav-4').classList.add('active');
-  document.getElementById('form-step-4').classList.add('active');
-  document.getElementById('intake-nav').scrollIntoView({ behavior: 'smooth', block: 'start' });
+function submitIntake(){
+  const ref='NYC-WW-'+Date.now().toString().slice(-6);
+  document.getElementById('form-ref-num').textContent='Ref: '+ref;
+  const s3=document.getElementById('form-step-3');
+  const n3=document.getElementById('step-nav-3');
+  const n4=document.getElementById('step-nav-4');
+  const conf=document.getElementById('form-step-4');
+  if(s3)s3.classList.remove('active');
+  if(n3){n3.classList.remove('active');n3.classList.add('done');}
+  if(n4)n4.classList.add('active');
+  if(conf)conf.classList.add('active');
+  document.getElementById('intake-nav').scrollIntoView({behavior:'smooth',block:'start'});
 }
 </script>
 </body>
