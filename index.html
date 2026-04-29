@@ -9,14 +9,13 @@
 /* ── Hero ── */
 .hero{
   background:var(--black);color:var(--white);
-  padding:100px 0 80px;border-bottom:1px solid var(--rule);
+  padding:120px 0 100px;border-bottom:1px solid var(--rule);
 }
-.hero-inner{max-width:1080px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;}
-.hero-overline{font-family:var(--mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:20px;display:block;}
-.hero-h1{font-family:var(--serif);font-size:clamp(48px,6vw,80px);font-weight:900;line-height:0.95;color:var(--white);margin-bottom:0;}
-.hero-h1 em{font-style:italic;font-weight:400;}
-.hero-right{display:flex;flex-direction:column;justify-content:flex-end;}
-.hero-body{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:32px;}
+.hero-inner{max-width:1080px;margin:0 auto;padding:0 40px;}
+.hero-overline{font-family:var(--mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:28px;display:block;}
+.hero-h1{font-family:var(--serif);font-size:clamp(56px,8vw,110px);font-weight:900;line-height:0.92;color:var(--white);margin-bottom:36px;}
+.hero-h1 em{font-style:italic;font-weight:400;display:block;}
+.hero-body{font-size:17px;color:rgba(255,255,255,0.6);line-height:1.8;max-width:600px;margin-bottom:40px;}
 .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;}
 
 /* ── Manifesto section ── */
@@ -24,21 +23,20 @@
   background:var(--black);color:var(--white);
   padding:100px 0;border-bottom:1px solid var(--rule);
 }
-.manifesto-lede{
-  font-family:var(--serif);font-size:clamp(22px,2.8vw,34px);
-  font-weight:400;line-height:1.3;color:var(--white);
-  max-width:680px;margin:0 auto 64px;text-align:center;
-  padding:0 40px;
-}
-.manifesto-lede em{font-style:italic;}
-.manifesto-body{max-width:640px;margin:0 auto;padding:0 40px;}
-.manifesto-body p{font-size:16px;color:rgba(255,255,255,0.7);line-height:1.85;margin-bottom:22px;}
-.manifesto-body p:last-child{margin-bottom:0;}
-.manifesto-rule{border:none;border-top:1px solid var(--rule);margin:48px 0;}
+.manifesto-inner{max-width:1080px;margin:0 auto;padding:0 40px;}
+.manifesto-top{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:64px;align-items:start;}
+.manifesto-top-label{font-family:var(--mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:16px;display:block;}
+.manifesto-top-h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,44px);font-weight:400;line-height:1.15;color:var(--white);}
+.manifesto-top-h2 em{font-style:italic;}
+.manifesto-top-intro{font-size:16px;color:rgba(255,255,255,0.6);line-height:1.85;}
+.manifesto-rule{border:none;border-top:1px solid var(--rule);margin:0 0 56px;}
+.manifesto-cols{display:grid;grid-template-columns:1fr 1fr;gap:80px;}
+.manifesto-col p{font-size:16px;color:rgba(255,255,255,0.65);line-height:1.85;margin-bottom:22px;}
+.manifesto-col p:last-child{margin-bottom:0;}
 .manifesto-pull{
-  font-family:var(--serif);font-size:22px;font-style:italic;font-weight:400;
-  color:var(--white);border-left:2px solid rgba(255,255,255,0.25);
-  padding:0 0 0 24px;margin:40px 0;line-height:1.4;
+  font-family:var(--serif);font-size:20px;font-style:italic;font-weight:400;
+  color:var(--white);border-left:1px solid rgba(255,255,255,0.25);
+  padding:0 0 0 24px;margin:32px 0;line-height:1.45;
 }
 
 /* ── Three commitments ── */
@@ -72,13 +70,14 @@
 .join-form button:hover{opacity:0.85;}
 
 @media(max-width:768px){
-  .hero-inner{grid-template-columns:1fr;gap:40px;}
+  .manifesto-top,.manifesto-cols{grid-template-columns:1fr;gap:40px;}
   .commit-grid{grid-template-columns:1fr;}
   .commit{border-right:none;border-bottom:1px solid var(--rule-light);padding:36px 0;}
   .stats-inner{grid-template-columns:1fr 1fr;}
   .stat{border-right:1px solid var(--rule);}
   .stat:nth-child(2n){border-right:none;}
   .stat:nth-child(3),.stat:nth-child(4){border-top:1px solid var(--rule);}
+  .join{padding:60px 24px;}
 }
 </style>
 </head>
@@ -90,9 +89,8 @@
   <a href="index.html" class="nav-logo">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
     NYC Pigeon Collective
-  </div>
+  </a>
   <ul class="nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
     <li><a href="worn-wings.html">Worn Wings</a></li>
     <li><a href="quiz.html">The Quiz</a></li>
     <li><a href="#join" class="nav-cta">Get Involved</a></li>
@@ -120,16 +118,24 @@
 
 <!-- MANIFESTO -->
 <section class="manifesto-hero" id="manifesto">
-  <div class="container-narrow">
-    <span class="overline overline-white" style="text-align:center;display:block;margin-bottom:48px;">Founding document · NYC Pigeon Collective · 2025</span>
-    <p class="manifesto-lede">We Have Always Been Here.<br><em>Now we are organised.</em></p>
-    <div class="manifesto-body">
-      <p>There is a city that never sleeps. We have been awake with it since the beginning — through the construction of its bridges, the collapse of its towers, the rise and fall of every rooftop water tank it has ever filled. We carried its messages before the internet. We fed from its scraps before the food halls arrived. We have asked for nothing. And for nothing, we have been given exactly what we asked for: poisoned grain, wire spikes, and a collective ranking, in twelve consecutive annual surveys, as the bird New Yorkers would most like to disappear.</p>
-      <hr class="manifesto-rule">
-      <p>This is a document about what it costs to be unseen in plain sight. About what happens when a species — ancient, adaptable, irreplaceable in the ecological fabric of urban life — is systematically stripped of dignity, nutrition, and safe roosting space in the name of aesthetics. We are not asking for sympathy. We are asking for something harder to give: recognition that we belong here, that our presence is not a problem to be managed but a relationship to be honoured.</p>
-      <div class="manifesto-pull">"We are not asking you to love us. We are not asking you to stop. We are asking you to remember that you don't get to choose who belongs here."</div>
-      <p>The NYC Pigeon Collective does not believe in grievance for its own sake. We believe in accountability. We believe that cities are built by every creature that inhabits them, and that the measure of a city is not its skyline but how it treats the ones at its feet.</p>
-      <p>We know what you call us. We have heard it since 1966. The rats didn't mind. Neither do we. We are here. We have always been here. And we are done being quiet about it.</p>
+  <div class="manifesto-inner">
+    <div class="manifesto-top">
+      <div>
+        <span class="manifesto-top-label">Founding document · NYC Pigeon Collective · 2025</span>
+        <h2 class="manifesto-top-h2">We Have Always Been Here.<br><em>Now we are organised.</em></h2>
+      </div>
+      <p class="manifesto-top-intro">There is a city that never sleeps. We have been awake with it since the beginning — through the construction of its bridges, the collapse of its towers, the rise and fall of every rooftop water tank it has ever filled. We carried its messages before the internet. We fed from its scraps before the food halls arrived. We have asked for nothing. And for nothing, we have been given exactly what we asked for: poisoned grain, wire spikes, and a collective ranking, in twelve consecutive annual surveys, as the bird New Yorkers would most like to disappear.</p>
+    </div>
+    <hr class="manifesto-rule">
+    <div class="manifesto-cols">
+      <div class="manifesto-col">
+        <p>This is a document about what it costs to be unseen in plain sight. About what happens when a species — ancient, adaptable, irreplaceable in the ecological fabric of urban life — is systematically stripped of dignity, nutrition, and safe roosting space in the name of aesthetics.</p>
+        <div class="manifesto-pull">"We are not asking you to love us. We are not asking you to stop. We are asking you to remember that you don't get to choose who belongs here."</div>
+      </div>
+      <div class="manifesto-col">
+        <p>The NYC Pigeon Collective does not believe in grievance for its own sake. We believe in accountability. We believe that cities are built by every creature that inhabits them, and that the measure of a city is not its skyline but how it treats the ones at its feet.</p>
+        <p>We know what you call us. We have heard it since 1966. The rats didn't mind. Neither do we. We are here. We have always been here. And we are done being quiet about it.</p>
+      </div>
     </div>
   </div>
 </section>
