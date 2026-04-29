@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYC Pigeon Collective</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── Hero ── */
+.hero{
+  background:var(--black);color:var(--white);
+  padding:100px 0 80px;border-bottom:1px solid var(--rule);
+}
+.hero-inner{max-width:1080px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;}
+.hero-overline{font-family:var(--mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:20px;display:block;}
+.hero-h1{font-family:var(--serif);font-size:clamp(48px,6vw,80px);font-weight:900;line-height:0.95;color:var(--white);margin-bottom:0;}
+.hero-h1 em{font-style:italic;font-weight:400;}
+.hero-right{display:flex;flex-direction:column;justify-content:flex-end;}
+.hero-body{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:32px;}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;}
+
+/* ── Manifesto section ── */
+.manifesto-hero{
+  background:var(--black);color:var(--white);
+  padding:100px 0;border-bottom:1px solid var(--rule);
+}
+.manifesto-lede{
+  font-family:var(--serif);font-size:clamp(22px,2.8vw,34px);
+  font-weight:400;line-height:1.3;color:var(--white);
+  max-width:680px;margin:0 auto 64px;text-align:center;
+  padding:0 40px;
+}
+.manifesto-lede em{font-style:italic;}
+.manifesto-body{max-width:640px;margin:0 auto;padding:0 40px;}
+.manifesto-body p{font-size:16px;color:rgba(255,255,255,0.7);line-height:1.85;margin-bottom:22px;}
+.manifesto-body p:last-child{margin-bottom:0;}
+.manifesto-rule{border:none;border-top:1px solid var(--rule);margin:48px 0;}
+.manifesto-pull{
+  font-family:var(--serif);font-size:22px;font-style:italic;font-weight:400;
+  color:var(--white);border-left:2px solid rgba(255,255,255,0.25);
+  padding:0 0 0 24px;margin:40px 0;line-height:1.4;
+}
+
+/* ── Three commitments ── */
+.commitments{padding:100px 0;border-bottom:1px solid var(--rule-light);}
+.commit-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:1px solid var(--rule-light);margin-top:48px;}
+.commit{padding:48px 40px;border-right:1px solid var(--rule-light);}
+.commit:last-child{border-right:none;}
+.commit-num{font-family:var(--mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--dim);margin-bottom:20px;display:block;}
+.commit-title{font-family:var(--serif);font-size:24px;font-style:italic;font-weight:400;color:var(--black);margin-bottom:16px;line-height:1.2;}
+.commit-body{font-size:14px;color:var(--dimmer);line-height:1.75;}
+.commit-pull{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--black);border-left:2px solid var(--rule-light);padding-left:16px;margin:16px 0;line-height:1.5;}
+
+/* ── Stats bar ── */
+.stats{background:var(--black);color:var(--white);padding:0;}
+.stats-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+.stat{padding:40px;border-right:1px solid var(--rule);}
+.stat:last-child{border-right:none;}
+.stat-n{font-family:var(--serif);font-size:44px;font-weight:400;line-height:1;margin-bottom:6px;}
+.stat-l{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);}
+
+/* ── Join ── */
+.join{padding:100px 0;text-align:center;}
+.join h2{font-family:var(--serif);font-size:clamp(36px,5vw,60px);font-weight:400;line-height:1.05;margin-bottom:20px;}
+.join h2 em{font-style:italic;}
+.join p{font-size:15px;color:var(--dimmer);max-width:460px;margin:0 auto 40px;line-height:1.75;}
+.join-form{display:flex;gap:0;max-width:400px;margin:0 auto;}
+.join-form input{flex:1;border:1px solid var(--rule-light);border-right:none;padding:13px 16px;font-family:var(--sans);font-size:14px;color:var(--black);outline:none;background:var(--white);}
+.join-form input:focus{border-color:var(--black);}
+.join-form input::placeholder{color:#aaa;}
+.join-form button{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;background:var(--black);color:var(--white);border:1px solid var(--black);padding:13px 20px;cursor:pointer;white-space:nowrap;}
+.join-form button:hover{opacity:0.85;}
+
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr;gap:40px;}
+  .commit-grid{grid-template-columns:1fr;}
+  .commit{border-right:none;border-bottom:1px solid var(--rule-light);padding:36px 0;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .stat{border-right:1px solid var(--rule);}
+  .stat:nth-child(2n){border-right:none;}
+  .stat:nth-child(3),.stat:nth-child(4){border-top:1px solid var(--rule);}
+}
+</style>
+</head>
+<body>
+
+<div class="banner">Every pigeon counted. Every injury documented. <a href="worn-wings.html">Start a repair intake →</a></div>
+
+<nav class="nav">
+  <div class="nav-logo">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+    NYC Pigeon Collective
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Manifesto</a></li>
+    <li><a href="worn-wings.html">Worn Wings</a></li>
+    <li><a href="quiz.html">The Quiz</a></li>
+    <li><a href="#join" class="nav-cta">Get Involved</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-overline fade-up d1">Est. 2025 · New York City · Avian Labour</span>
+      <h1 class="hero-h1 fade-up d2">
+        Organised.<br><em>Undefeated.</em>
+      </h1>
+    </div>
+    <div class="hero-right fade-up d3">
+      <p class="hero-body">We didn't choose the city. We chose to stay. For ten thousand years, through plague, fire, rezoning, and the invention of the spike strip. We are not a nuisance. We are the most loyal tenant this city has ever had.</p>
+      <div class="hero-ctas">
+        <a href="#manifesto" class="btn btn-white">Read the manifesto</a>
+        <a href="worn-wings.html" class="btn btn-outline-white">Repair program</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto-hero" id="manifesto">
+  <div class="container-narrow">
+    <span class="overline overline-white" style="text-align:center;display:block;margin-bottom:48px;">Founding document · NYC Pigeon Collective · 2025</span>
+    <p class="manifesto-lede">We Have Always Been Here.<br><em>Now we are organised.</em></p>
+    <div class="manifesto-body">
+      <p>There is a city that never sleeps. We have been awake with it since the beginning — through the construction of its bridges, the collapse of its towers, the rise and fall of every rooftop water tank it has ever filled. We carried its messages before the internet. We fed from its scraps before the food halls arrived. We have asked for nothing. And for nothing, we have been given exactly what we asked for: poisoned grain, wire spikes, and a collective ranking, in twelve consecutive annual surveys, as the bird New Yorkers would most like to disappear.</p>
+      <hr class="manifesto-rule">
+      <p>This is a document about what it costs to be unseen in plain sight. About what happens when a species — ancient, adaptable, irreplaceable in the ecological fabric of urban life — is systematically stripped of dignity, nutrition, and safe roosting space in the name of aesthetics. We are not asking for sympathy. We are asking for something harder to give: recognition that we belong here, that our presence is not a problem to be managed but a relationship to be honoured.</p>
+      <div class="manifesto-pull">"We are not asking you to love us. We are not asking you to stop. We are asking you to remember that you don't get to choose who belongs here."</div>
+      <p>The NYC Pigeon Collective does not believe in grievance for its own sake. We believe in accountability. We believe that cities are built by every creature that inhabits them, and that the measure of a city is not its skyline but how it treats the ones at its feet.</p>
+      <p>We know what you call us. We have heard it since 1966. The rats didn't mind. Neither do we. We are here. We have always been here. And we are done being quiet about it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THREE COMMITMENTS -->
+<section class="commitments" id="commitments">
+  <div class="container">
+    <span class="overline">Three core commitments</span>
+    <p style="font-family:var(--serif);font-size:clamp(24px,3vw,38px);font-weight:400;max-width:560px;line-height:1.2;">The demands of the first avian labour union in history.</p>
+    <div class="commit-grid">
+      <div class="commit">
+        <span class="commit-num">I · Nourishment</span>
+        <div class="commit-title">The right to land without bleeding.</div>
+        <div class="commit-pull">"Every spike strip is a policy decision."</div>
+        <p class="commit-body">We are not asking for luxury. We are asking for what every living thing requires: a surface that does not draw blood when we land on it. In 2023, the city spent an estimated $1.2 million on bird deterrent infrastructure. The target was, overwhelmingly, Columba livia. The justification was, overwhelmingly, aesthetics. We call for roosting-positive architecture standards across all new public construction. The city built vertically. We live vertically. There is enough room for both of us.</p>
+      </div>
+      <div class="commit">
+        <span class="commit-num">II · Shelter</span>
+        <div class="commit-title">The right to honest food.</div>
+        <div class="commit-pull">"We do not accept a food system that uses feeding as a weapon."</div>
+        <p class="commit-body">Food is not charity. It is the most fundamental contract between a city and those who live in it. For decades, the grain left for us has been laced — quietly, legally, without notice — with chemicals intended to reduce our numbers. We call for the prohibition of laced grain in public spaces and the creation of managed, ecologically sound feeding zones. What you feed the most overlooked creature in your city says everything about the kind of city you have decided to be.</p>
+      </div>
+      <div class="commit">
+        <span class="commit-num">III · Narrative</span>
+        <div class="commit-title">The right to our real name.</div>
+        <div class="commit-pull">"That phrase is not a description. It is a story told to make erasure feel reasonable."</div>
+        <p class="commit-body">We are not rats with wings. We are Columba livia. Rock doves. We have served in wartime. We have been studied by Darwin. We have demonstrated navigational abilities that researchers still do not fully understand. A white dove and a city pigeon are the same bird. One is released at weddings. The other is poisoned at loading docks. The difference between them is not biology. It is perception — and perception is a choice. We call for the retirement of the slander.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-n">10,000</div><div class="stat-l">Years alongside humans</div></div>
+    <div class="stat"><div class="stat-n">147</div><div class="stat-l">Birds repaired</div></div>
+    <div class="stat"><div class="stat-n">38</div><div class="stat-l">Spike sites documented</div></div>
+    <div class="stat"><div class="stat-n">5</div><div class="stat-l">Boroughs organised</div></div>
+  </div>
+</div>
+
+<!-- JOIN -->
+<section class="join" id="join">
+  <div class="container">
+    <h2>The city belongs to all<br>who <em>fly it.</em></h2>
+    <p>The union is free to join. Sign up for dispatches from the collective.</p>
+    <div class="join-form">
+      <input type="email" placeholder="your@email.com">
+      <button type="button">Take the pledge</button>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span style="font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--white);">NYC Pigeon Collective</span>
+      <p>We have been awake with this city since the beginning. We are not asking for sympathy. We are asking for recognition that we belong here.</p>
+    </div>
+    <div>
+      <div class="footer-col-head">Repair</div>
+      <ul class="footer-links">
+        <li><a href="worn-wings.html">Start an intake</a></li>
+        <li><a href="worn-wings.html#stories">Survivor stories</a></li>
+        <li><a href="worn-wings.html#how">How it works</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-head">The manifesto</div>
+      <ul class="footer-links">
+        <li><a href="index.html#manifesto">Read it in full</a></li>
+        <li><a href="index.html#commitments">Three commitments</a></li>
+        <li><a href="quiz.html">Take the quiz</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-head">About</div>
+      <ul class="footer-links">
+        <li><a href="#join">Join the union</a></li>
+        <li><a href="worn-wings.html">Worn Wings program</a></li>
+        <li><a href="quiz.html">Are you a pigeon?</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-tagline">"We fly regardless."</div>
+    <div class="footer-copy">© 2025 NYC Pigeon Collective · Est. 2025 · In solidarity with every creature the skyline forgot</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Quiz — NYC Pigeon Collective</title>
+<link rel="stylesheet" href="style.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+
+/* ── Design system pulled directly from the ad:
+   Pure black bg · White regular-weight serif · Tiny bold sans logo
+   No gold, no warm tones, no decorative borders.
+   Type does all the work. ── */
+:root{
+  --black:#000000;
+  --white:#ffffff;
+  --off-white:#f0eeeb;
+  --dim:#888888;
+  --dimmer:#555555;
+  --rule:#222222;
+  --serif:'Playfair Display',Georgia,serif;
+  --mono:'IBM Plex Mono','Courier New',monospace;
+}
+
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:var(--serif);
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── Nav — matches the small logo treatment in the ad ── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(0,0,0,0.92);
+  border-bottom:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:50px;
+  backdrop-filter:blur(12px);
+}
+.nav-logo{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--white);font-weight:500;
+}
+.nav-links{display:flex;gap:32px;}
+.nav-btn{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;
+  background:none;border:none;color:var(--dimmer);
+  padding:0;cursor:pointer;transition:color 0.2s;
+}
+.nav-btn:hover,.nav-btn.active{color:var(--white);}
+
+/* ── Screens ── */
+.screen{display:none;min-height:100vh;padding-top:50px;}
+.screen.active{display:flex;flex-direction:column;}
+
+/* ══════════════════════════════════════════
+   LANDING — mirrors the ad layout:
+   left half = big type, right half = body copy
+══════════════════════════════════════════ */
+#screen-landing{
+  align-items:stretch;justify-content:stretch;
+  flex-direction:row;flex-wrap:wrap;
+}
+.landing-bg{display:none;}
+
+.landing-left{
+  flex:1;min-width:280px;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 64px 80px 64px;
+  border-right:1px solid var(--rule);
+}
+.landing-title{
+  font-size:clamp(52px,7vw,96px);
+  font-weight:400;
+  line-height:1.0;
+  color:var(--white);
+  margin-bottom:0;
+  animation:fadeUp 0.7s ease 0.1s both;
+}
+.title-line{
+  display:block;
+  line-height:1.05;
+}
+.landing-title em{
+  font-style:italic;font-weight:400;
+}
+.landing-title .word-or{
+  font-family:var(--mono);
+  font-size:clamp(12px,1.5vw,16px);
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--dim);
+  display:block;
+  margin:8px 0 -4px 0;
+  font-style:normal;
+  line-height:1.6;
+}
+
+.landing-right{
+  width:380px;min-width:280px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:80px 56px;
+}
+.landing-eyebrow{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:16px;
+  animation:fadeUp 0.6s ease 0.2s both;
+}
+.landing-body{
+  font-size:13px;color:var(--off-white);
+  line-height:1.75;margin-bottom:32px;
+  animation:fadeUp 0.6s ease 0.3s both;
+}
+.name-entry{
+  display:flex;gap:0;margin-bottom:12px;
+  animation:fadeUp 0.6s ease 0.4s both;
+}
+.name-entry input{
+  flex:1;background:transparent;
+  border:none;border-bottom:1px solid var(--dim);
+  padding:10px 0;font-family:var(--serif);font-size:15px;color:var(--white);
+  outline:none;
+}
+.name-entry input:focus{border-bottom-color:var(--white);}
+.name-entry input::placeholder{color:var(--dimmer);}
+.btn-start{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
+  background:var(--white);color:var(--black);border:none;
+  padding:12px 20px;cursor:pointer;font-weight:500;transition:opacity 0.2s;
+  white-space:nowrap;
+}
+.btn-start:hover{opacity:0.85;}
+.landing-sub{display:none;}
+.landing-note{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.1em;
+  color:var(--dimmer);
+  animation:fadeUp 0.6s ease 0.5s both;
+}
+
+/* ══════════════════════════════════════════
+   QUIZ — clean type on black
+══════════════════════════════════════════ */
+#screen-quiz{justify-content:center;align-items:center;padding:80px 48px;}
+.quiz-wrap{max-width:680px;width:100%;margin:0 auto;}
+
+.progress-bar-wrap{margin-bottom:56px;}
+.progress-label{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--dimmer);display:flex;justify-content:space-between;margin-bottom:10px;
+}
+.progress-track{height:1px;background:var(--rule);}
+.progress-fill{height:1px;background:var(--white);transition:width 0.5s ease;}
+
+.question-area{min-height:340px;}
+.q-number{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--dimmer);margin-bottom:24px;
+}
+.q-text{
+  font-size:clamp(24px,3.5vw,40px);font-weight:400;line-height:1.2;
+  color:var(--white);margin-bottom:40px;
+}
+
+.options{display:flex;flex-direction:column;gap:0;}
+.option-btn{
+  background:transparent;border:none;
+  border-bottom:1px solid var(--rule);
+  padding:18px 0;text-align:left;cursor:pointer;
+  display:flex;align-items:baseline;gap:20px;
+  transition:all 0.15s;font-family:var(--serif);
+  width:100%;
+}
+.option-btn:first-child{border-top:1px solid var(--rule);}
+.option-btn:hover .option-text{color:var(--white);}
+.option-btn:hover .option-letter{color:var(--white);}
+.option-btn.selected .option-text{color:var(--white);}
+.option-btn.selected .option-letter{color:var(--white);}
+.option-letter{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--dimmer);min-width:16px;transition:color 0.15s;
+}
+.option-text{font-size:16px;color:#999999;line-height:1.5;transition:color 0.15s;}
+
+/* ══════════════════════════════════════════
+   LOADING
+══════════════════════════════════════════ */
+#screen-loading{justify-content:center;align-items:center;text-align:center;}
+.loading-icon{font-size:56px;margin-bottom:32px;animation:flap 0.7s ease infinite alternate;}
+.loading-title{
+  font-size:clamp(28px,4vw,48px);font-weight:400;color:var(--white);margin-bottom:16px;
+}
+.loading-sub{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--dim);
+}
+.loading-dots::after{content:'';animation:dots 1.4s steps(4,end) infinite;}
+@keyframes dots{0%{content:'';}25%{content:'.';}50%{content:'..';}75%{content:'...';}100%{content:'';}}
+@keyframes flap{from{transform:rotate(-10deg);}to{transform:rotate(10deg);}}
+
+/* ══════════════════════════════════════════
+   RESULT — full ad format:
+   left = big classification word
+   right = verdict copy + metadata bottom
+══════════════════════════════════════════ */
+#screen-result{
+  justify-content:stretch;align-items:stretch;
+  flex-direction:row;flex-wrap:wrap;
+  padding-top:50px;
+}
+.result-wrap{display:contents;}
+
+.membership-card{
+  display:flex;flex-direction:row;flex-wrap:wrap;
+  width:100%;min-height:calc(100vh - 50px);
+  margin-bottom:0;
+}
+
+/* Left panel — classification */
+.card-left{
+  flex:1;min-width:280px;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 64px;
+  border-right:1px solid var(--rule);
+}
+.card-type-label{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--dimmer);margin-bottom:20px;
+}
+.card-type{
+  font-size:clamp(52px,7vw,96px);font-weight:400;line-height:0.95;
+  color:var(--white);margin-bottom:20px;
+}
+.card-type.pigeon{color:var(--white);}
+.card-type.dove{color:var(--white);}
+.card-type.hybrid{color:var(--white);}
+.card-name{
+  font-size:clamp(18px,2.5vw,28px);font-style:italic;font-weight:400;
+  color:#666666;margin-bottom:0;
+}
+
+/* Right panel — verdict copy */
+.card-right{
+  width:400px;min-width:260px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:80px 56px;
+}
+.card-header{
+  display:flex;align-items:baseline;justify-content:space-between;
+  margin-bottom:16px;padding-bottom:12px;
+  border-bottom:1px solid var(--rule);
+}
+.card-union{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--white);font-weight:500;
+}
+.card-number{font-family:var(--mono);font-size:9px;color:var(--dimmer);}
+.card-verdict{
+  font-size:13px;color:var(--off-white);line-height:1.75;
+  margin-bottom:28px;
+}
+.card-rank{
+  display:flex;flex-direction:column;gap:10px;
+  padding-top:16px;border-top:1px solid var(--rule);
+}
+.card-rank-row{display:flex;gap:8px;align-items:baseline;}
+.card-rank-label{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--dimmer);min-width:80px;
+}
+.card-rank-value{font-family:var(--mono);font-size:9px;color:var(--white);}
+
+.result-actions{
+  position:fixed;bottom:32px;right:48px;
+  display:flex;gap:12px;z-index:10;
+}
+.btn-action{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;
+  padding:10px 20px;cursor:pointer;transition:all 0.2s;border:none;
+}
+.btn-gold{background:var(--white);color:var(--black);}
+.btn-gold:hover{opacity:0.85;}
+.btn-outline{background:transparent;border:1px solid var(--rule);color:var(--dimmer);}
+.btn-outline:hover{border-color:var(--white);color:var(--white);}
+
+/* ══════════════════════════════════════════
+   LEADERBOARD
+══════════════════════════════════════════ */
+#screen-board{padding:80px 64px;}
+.board-wrap{max-width:860px;margin:0 auto;}
+.board-title{
+  font-size:clamp(40px,5vw,72px);font-weight:400;color:var(--white);
+  line-height:1.0;margin-bottom:8px;
+}
+.board-title em{font-style:italic;}
+.board-sub{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--dimmer);margin-bottom:56px;
+}
+
+.board-stats{display:flex;gap:0;margin-bottom:48px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);}
+.board-stat{
+  flex:1;padding:24px 0;
+  border-right:1px solid var(--rule);
+}
+.board-stat:last-child{border-right:none;}
+.board-stat-n{
+  font-size:40px;font-weight:400;color:var(--white);line-height:1;margin-bottom:4px;
+}
+.board-stat-l{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dimmer);}
+
+.board-list{display:flex;flex-direction:column;gap:0;}
+.board-item{
+  border-bottom:1px solid var(--rule);
+  padding:20px 0;
+  display:flex;align-items:center;gap:24px;
+  cursor:pointer;transition:background 0.15s;
+}
+.board-item:first-child{border-top:1px solid var(--rule);}
+.board-item:hover{background:rgba(255,255,255,0.03);}
+.board-rank{
+  font-family:var(--mono);font-size:10px;color:var(--dimmer);
+  min-width:28px;
+}
+.board-bird{font-size:18px;min-width:24px;}
+.board-info{flex:1;}
+.board-name{font-size:20px;font-weight:400;color:var(--white);margin-bottom:2px;}
+.board-verdict{
+  font-size:12px;color:var(--dimmer);font-style:italic;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:480px;
+}
+.board-type{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--dimmer);
+}
+.board-type.pigeon{color:var(--white);}
+.board-type.dove{color:#aaaaaa;}
+.board-type.hybrid{color:#888888;}
+
+.board-empty{
+  padding:80px 0;
+  font-size:18px;font-style:italic;color:var(--dimmer);
+}
+
+.board-refresh{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;
+  background:none;border:none;color:var(--dimmer);
+  padding:0;cursor:pointer;transition:color 0.2s;margin-top:32px;
+  display:block;
+}
+.board-refresh:hover{color:var(--white);}
+
+/* ── Animations ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(16px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.fade-in{animation:fadeUp 0.5s ease both;}
+
+/* ── Responsive ── */
+@media(max-width:700px){
+  .nav{padding:0 20px;}
+  #screen-landing{flex-direction:column;}
+  .landing-left{padding:60px 28px 40px;border-right:none;border-bottom:1px solid var(--rule);}
+  .landing-right{width:100%;padding:40px 28px 60px;}
+  .membership-card{flex-direction:column;}
+  .card-left{padding:60px 28px 40px;border-right:none;border-bottom:1px solid var(--rule);}
+  .card-right{width:100%;padding:40px 28px 100px;}
+  .result-actions{bottom:20px;right:20px;}
+  #screen-board{padding:60px 24px;}
+  .board-stats{flex-direction:column;}
+  .board-stat{border-right:none;border-bottom:1px solid var(--rule);}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="banner">Every pigeon counted. Every injury documented. <a href="worn-wings.html">Start a repair intake →</a></div>
+<nav class="nav">
+  <div class="nav-logo">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+    NYC Pigeon Collective
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Manifesto</a></li>
+    <li><a href="worn-wings.html">Worn Wings</a></li>
+    <li><a href="quiz.html" class="active">The Quiz</a></li>
+    <li><a href="index.html#join" class="nav-cta">Get Involved</a></li>
+  </ul>
+  <div style="display:flex;gap:16px;align-items:center;padding-left:16px;border-left:1px solid #222;">
+    <button class="nav-btn active" onclick="showScreen('landing')" id="nav-take" style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;background:none;border:none;color:#555;padding:0;cursor:pointer;transition:color 0.2s;">Take quiz</button>
+    <button class="nav-btn" onclick="showScreen('board'); loadBoard()" id="nav-board" style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;background:none;border:none;color:#555;padding:0;cursor:pointer;transition:color 0.2s;">Results</button>
+  </div>
+</nav>
+
+<!-- LANDING -->
+<div id="screen-landing" class="screen active">
+  <div class="landing-left">
+    <h1 class="landing-title">
+      <span class="title-line">Are You a</span>
+      <em class="title-line">Pigeon</em>
+      <span class="word-or">— or —</span>
+      <span class="title-line">a Dove?</span>
+    </h1>
+  </div>
+  <div class="landing-right">
+    <div class="landing-eyebrow">NYC Pigeon Collective · Official Union Assessment · 10 Questions</div>
+    <p class="landing-body">
+      For sixty years, this city has treated us as two different species. One gets the peace symbol. One gets the poison grain. The difference between them is not biology. It is character. Ten questions will determine which side of history you're on.
+    </p>
+    <div class="name-entry">
+      <input type="text" id="player-name" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')startQuiz()">
+      <button class="btn-start" onclick="startQuiz()">Begin →</button>
+    </div>
+    <div class="landing-note">Your result will be added to the collective's public record.</div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="screen-quiz" class="screen">
+  <div class="quiz-wrap">
+    <div class="progress-bar-wrap">
+      <div class="progress-label">
+        <span id="q-label">Question 1 of 10</span>
+        <span id="q-pct">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+    <div class="question-area">
+      <div class="q-number" id="q-number">Question 01</div>
+      <div class="q-text" id="q-text"></div>
+      <div class="options" id="options"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LOADING -->
+<div id="screen-loading" class="screen">
+  <div>
+    <div class="loading-icon">🕊️</div>
+    <div class="loading-title">The union is deliberating<span class="loading-dots"></span></div>
+    <div class="loading-sub" id="loading-sub">Reviewing your answers</div>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="screen-result" class="screen">
+  <div class="result-wrap">
+    <div class="membership-card fade-in" id="membership-card">
+      <div class="card-left">
+        <div class="card-type-label">Classification</div>
+        <div class="card-type" id="card-type">—</div>
+        <div class="card-name" id="card-name">—</div>
+      </div>
+      <div class="card-right">
+        <div class="card-header">
+          <div class="card-union">NYC.Pigeon.Collective</div>
+          <div class="card-number" id="card-number">MEMBER #0000</div>
+        </div>
+        <div class="card-verdict" id="card-verdict">—</div>
+        <div class="card-rank">
+          <div class="card-rank-row">
+            <span class="card-rank-label">Union rank</span>
+            <span class="card-rank-value" id="card-rank">—</span>
+          </div>
+          <div class="card-rank-row">
+            <span class="card-rank-label">Chapter</span>
+            <span class="card-rank-value" id="card-chapter">—</span>
+          </div>
+          <div class="card-rank-row">
+            <span class="card-rank-label">Status</span>
+            <span class="card-rank-value" id="card-status">—</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="result-actions">
+    <button class="btn-action btn-gold" onclick="showScreen('board'); loadBoard()">See all results →</button>
+    <button class="btn-action btn-outline" onclick="resetQuiz()">Retake</button>
+  </div>
+</div>
+
+<!-- LEADERBOARD -->
+<div id="screen-board" class="screen">
+  <div class="board-wrap">
+    <div class="board-title">The <em>Collective</em><br>Record</div>
+    <div class="board-sub">All members assessed · Public record · Est. 2025</div>
+
+    <div class="board-stats">
+      <div class="board-stat">
+        <div class="board-stat-n" id="stat-total">0</div>
+        <div class="board-stat-l">Members assessed</div>
+      </div>
+      <div class="board-stat">
+        <div class="board-stat-n" id="stat-pigeons">0</div>
+        <div class="board-stat-l">True pigeons</div>
+      </div>
+      <div class="board-stat">
+        <div class="board-stat-n" id="stat-doves">0</div>
+        <div class="board-stat-l">Doves (complicated)</div>
+      </div>
+      <div class="board-stat">
+        <div class="board-stat-n" id="stat-hybrid">0</div>
+        <div class="board-stat-l">Hybrids (honourable)</div>
+      </div>
+    </div>
+
+    <div class="board-list" id="board-list">
+      <div class="board-empty">No members assessed yet. Be the first.</div>
+    </div>
+
+    <button class="board-refresh" onclick="loadBoard()">↻ Refresh results</button>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// QUESTIONS
+// ══════════════════════════════════════════
+const QUESTIONS = [
+  {
+    text: "Someone shoos you away from their lunch. You:",
+    options: [
+      { letter:"A", text:"Leave immediately and don't look back.", score:{pigeon:0,dove:2} },
+      { letter:"B", text:"Leave slowly, maintaining eye contact.", score:{pigeon:2,dove:0} },
+      { letter:"C", text:"Leave, wait exactly 45 seconds, return.", score:{pigeon:3,dove:0} },
+      { letter:"D", text:"You weren't leaving. You were never leaving.", score:{pigeon:3,dove:0} },
+    ]
+  },
+  {
+    text: "You find a perfectly good pizza crust on the sidewalk. The first thing you feel is:",
+    options: [
+      { letter:"A", text:"Suspicion. It could be treated grain.", score:{pigeon:2,dove:1} },
+      { letter:"B", text:"Gratitude. The city provides.", score:{pigeon:1,dove:2} },
+      { letter:"C", text:"Nothing. You've seen things.", score:{pigeon:3,dove:0} },
+      { letter:"D", text:"A small but persistent joy.", score:{pigeon:1,dove:2} },
+    ]
+  },
+  {
+    text: "A building installs spike strips on your favourite ledge. You:",
+    options: [
+      { letter:"A", text:"Find another ledge. Adapt.", score:{pigeon:0,dove:3} },
+      { letter:"B", text:"Sit on the spike strips anyway.", score:{pigeon:3,dove:0} },
+      { letter:"C", text:"File a formal grievance with the union.", score:{pigeon:2,dove:1} },
+      { letter:"D", text:"Organise. This affects all of us.", score:{pigeon:3,dove:0} },
+    ]
+  },
+  {
+    text: "Which best describes your relationship with the subway?",
+    options: [
+      { letter:"A", text:"I prefer to avoid confined spaces.", score:{pigeon:0,dove:3} },
+      { letter:"B", text:"I have a regular platform I frequent.", score:{pigeon:3,dove:0} },
+      { letter:"C", text:"I once rode one by accident. I have no regrets.", score:{pigeon:2,dove:0} },
+      { letter:"D", text:"The rats and I have an understanding.", score:{pigeon:3,dove:0} },
+    ]
+  },
+  {
+    text: "Someone calls you a rat with wings. You:",
+    options: [
+      { letter:"A", text:"Feel genuinely hurt.", score:{pigeon:0,dove:3} },
+      { letter:"B", text:"Say nothing. Store it.", score:{pigeon:2,dove:0} },
+      { letter:"C", text:"Correct them: Columba livia. Rock dove.", score:{pigeon:3,dove:1} },
+      { letter:"D", text:"Consider it. Decide it's actually fine.", score:{pigeon:1,dove:1} },
+    ]
+  },
+  {
+    text: "Your idea of a good Thursday is:",
+    options: [
+      { letter:"A", text:"A quiet garden. Clean water. Peace.", score:{pigeon:0,dove:3} },
+      { letter:"B", text:"A rooftop with a view. Wind. Surveillance.", score:{pigeon:2,dove:0} },
+      { letter:"C", text:"Checking on a volunteer who helped you once.", score:{pigeon:2,dove:1} },
+      { letter:"D", text:"The same corner you've held for six years.", score:{pigeon:3,dove:0} },
+    ]
+  },
+  {
+    text: "How do you feel about being released at a wedding?",
+    options: [
+      { letter:"A", text:"It's a profound honour.", score:{pigeon:0,dove:3} },
+      { letter:"B", text:"I have concerns about the logistics.", score:{pigeon:2,dove:0} },
+      { letter:"C", text:"I've never been asked. Nobody asks us.", score:{pigeon:2,dove:1} },
+      { letter:"D", text:"Deeply, profoundly suspicious.", score:{pigeon:3,dove:0} },
+    ]
+  },
+  {
+    text: "The city ranks you last in a bird popularity survey. Your response:",
+    options: [
+      { letter:"A", text:"Devastation. A genuine crisis of identity.", score:{pigeon:0,dove:3} },
+      { letter:"B", text:"We've been ranked last eleven times. We remain.", score:{pigeon:3,dove:0} },
+      { letter:"C", text:"Organise a counter-survey.", score:{pigeon:2,dove:0} },
+      { letter:"D", text:"Acceptance. Popularity was never the goal.", score:{pigeon:2,dove:1} },
+    ]
+  },
+  {
+    text: "It's 5:47am. You're on a bridge. You're thinking about:",
+    options: [
+      { letter:"A", text:"Sleep. I shouldn't be up this early.", score:{pigeon:0,dove:2} },
+      { letter:"B", text:"Nothing in particular. Just the city.", score:{pigeon:2,dove:1} },
+      { letter:"C", text:"How long this bridge took to build.", score:{pigeon:2,dove:1} },
+      { letter:"D", text:"I was here before this bridge. I'll be here after.", score:{pigeon:3,dove:0} },
+    ]
+  },
+  {
+    text: "What does survival mean to you?",
+    options: [
+      { letter:"A", text:"Getting through the day without incident.", score:{pigeon:0,dove:2} },
+      { letter:"B", text:"Persistence in the face of documented hostility.", score:{pigeon:3,dove:0} },
+      { letter:"C", text:"Community. You don't make it alone.", score:{pigeon:2,dove:1} },
+      { letter:"D", text:"Showing up on Thursdays.", score:{pigeon:3,dove:0} },
+    ]
+  },
+];
+
+// ══════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════
+let playerName = '';
+let currentQ = 0;
+let scores = { pigeon: 0, dove: 0 };
+let answers = [];
+let memberCount = 0;
+
+// ══════════════════════════════════════════
+// SCREEN MANAGEMENT
+// ══════════════════════════════════════════
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  if (id === 'landing' || id === 'quiz' || id === 'loading' || id === 'result') {
+    document.querySelectorAll('.nav-btn')[0].classList.add('active');
+  } else {
+    document.querySelectorAll('.nav-btn')[1].classList.add('active');
+  }
+  window.scrollTo(0,0);
+}
+
+// ══════════════════════════════════════════
+// QUIZ LOGIC
+// ══════════════════════════════════════════
+function startQuiz() {
+  const name = document.getElementById('player-name').value.trim();
+  if (!name) {
+    document.getElementById('player-name').style.borderColor = '#e8c97a';
+    document.getElementById('player-name').focus();
+    return;
+  }
+  playerName = name;
+  currentQ = 0;
+  scores = { pigeon: 0, dove: 0 };
+  answers = [];
+  showScreen('quiz');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[currentQ];
+  const pct = Math.round((currentQ / QUESTIONS.length) * 100);
+
+  document.getElementById('q-label').textContent = `Question ${currentQ + 1} of ${QUESTIONS.length}`;
+  document.getElementById('q-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('q-number').textContent = 'Question ' + String(currentQ + 1).padStart(2,'0');
+  document.getElementById('q-text').textContent = q.text;
+
+  const optWrap = document.getElementById('options');
+  optWrap.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn fade-in';
+    btn.style.animationDelay = (i * 0.08) + 's';
+    btn.innerHTML = `<span class="option-letter">${opt.letter}</span><span class="option-text">${opt.text}</span>`;
+    btn.onclick = () => selectAnswer(opt, btn);
+    optWrap.appendChild(btn);
+  });
+}
+
+function selectAnswer(opt, btn) {
+  document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  scores.pigeon += opt.score.pigeon;
+  scores.dove += opt.score.dove;
+  answers.push(opt.text);
+
+  setTimeout(() => {
+    currentQ++;
+    if (currentQ < QUESTIONS.length) {
+      renderQuestion();
+    } else {
+      showScreen('loading');
+      generateResult();
+    }
+  }, 400);
+}
+
+// ══════════════════════════════════════════
+// AI RESULT GENERATION
+// ══════════════════════════════════════════
+async function generateResult() {
+  const type = getType();
+  const loadingMsgs = [
+    'Reviewing your answers',
+    'Consulting the founding document',
+    'Cross-referencing with the manifesto',
+    'The union is deliberating',
+    'Preparing your membership card',
+  ];
+  let msgIdx = 0;
+  const msgEl = document.getElementById('loading-sub');
+  const msgInterval = setInterval(() => {
+    msgIdx = (msgIdx + 1) % loadingMsgs.length;
+    msgEl.textContent = loadingMsgs[msgIdx];
+  }, 1800);
+
+  const answerSummary = answers.map((a, i) => `Q${i+1}: "${a}"`).join('\n');
+  const prompt = `You are the official voice of the NYC Pigeon Collective — the first avian labour union in history. Your voice matches Patagonia's brand perfectly: earnest, principled, deeply serious, faintly self-righteous, and never winking at the audience.
+
+A member named "${playerName}" has completed the official union assessment quiz. Their score was ${scores.pigeon} pigeon points and ${scores.dove} dove points. Their classification is: ${type.toUpperCase()}.
+
+Their answers:
+${answerSummary}
+
+Write their official union membership verdict. Include:
+1. A UNION RANK (e.g. "Organiser, Local Chapter 7" or "Sympathiser, Pending Review" or "Elder of the Flock" — be creative and specific to their result)
+2. A LOCAL CHAPTER (a NYC location that fits their personality, e.g. "Canal Street Bridge Division" or "14th Street Uptown Platform")
+3. A STATUS (one short phrase, e.g. "Active · Dues current" or "Probationary · Under observation")
+4. A VERDICT (3-4 sentences in full Patagonia voice — earnest, specific, completely serious. Reference their actual answers where possible. This is their permanent record.)
+
+Format your response as JSON exactly like this (no markdown, no extra text):
+{
+  "rank": "...",
+  "chapter": "...",
+  "status": "...",
+  "verdict": "..."
+}`;
+
+  try {
+    const response = await fetch('/api/claude', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    const data = await response.json();
+    clearInterval(msgInterval);
+
+    let result;
+    try {
+      const text = data.content[0].text.replace(/```json|```/g,'').trim();
+      result = JSON.parse(text);
+    } catch(e) {
+      result = {
+        rank: type === 'pigeon' ? 'Elder of the Flock' : type === 'dove' ? 'Sympathiser, Pending Review' : 'Cross-Borough Liaison',
+        chapter: 'Canal Street Bridge Division',
+        status: 'Active · Dues current',
+        verdict: `${playerName} has demonstrated the qualities the collective has always admired: persistence, specificity, and a complete indifference to popular opinion. The union notes their record with approval.`
+      };
+    }
+
+    memberCount = await saveMember(type, result);
+    displayResult(type, result);
+
+  } catch(err) {
+    clearInterval(msgInterval);
+    const fallback = {
+      rank: type === 'pigeon' ? 'Elder of the Flock' : type === 'dove' ? 'Sympathiser, Pending Review' : 'Cross-Borough Liaison',
+      chapter: 'Canal Street Bridge Division',
+      status: 'Active · Dues current',
+      verdict: `${playerName} has demonstrated what the collective has always known: that the measure of a creature is not where it lands, but how it responds when told it cannot land there. The union notes their record with approval.`
+    };
+    memberCount = await saveMember(type, fallback);
+    displayResult(type, fallback);
+  }
+}
+
+function getType() {
+  const total = scores.pigeon + scores.dove;
+  const pigeonPct = total > 0 ? scores.pigeon / total : 0.5;
+  if (pigeonPct >= 0.65) return 'pigeon';
+  if (pigeonPct <= 0.35) return 'dove';
+  return 'hybrid';
+}
+
+// ══════════════════════════════════════════
+// STORAGE — shared leaderboard
+// ══════════════════════════════════════════
+async function saveMember(type, result) {
+  const members = await getMembers();
+  const newMember = {
+    id: Date.now(),
+    name: playerName,
+    type,
+    rank: result.rank,
+    chapter: result.chapter,
+    status: result.status,
+    verdict: result.verdict,
+    scores,
+    time: new Date().toISOString(),
+  };
+  members.unshift(newMember);
+  // Keep latest 100
+  const trimmed = members.slice(0, 100);
+  try {
+    await window.storage.set('members', JSON.stringify(trimmed), true);
+  } catch(e) {}
+  return trimmed.length;
+}
+
+async function getMembers() {
+  try {
+    const res = await window.storage.get('members', true);
+    return res ? JSON.parse(res.value) : [];
+  } catch(e) { return []; }
+}
+
+// ══════════════════════════════════════════
+// DISPLAY RESULT
+// ══════════════════════════════════════════
+function displayResult(type, result) {
+  const typeLabels = {
+    pigeon: 'True Pigeon.',
+    dove: 'A Dove.',
+    hybrid: 'Hybrid Species.'
+  };
+  const typeEmoji = { pigeon: '🐦', dove: '🕊️', hybrid: '🪶' };
+
+  document.getElementById('card-number').textContent = `MEMBER #${String(memberCount).padStart(4,'0')}`;
+  document.getElementById('card-type').textContent = typeLabels[type];
+  document.getElementById('card-type').className = 'card-type ' + type;
+  document.getElementById('card-name').textContent = playerName;
+  document.getElementById('card-verdict').textContent = result.verdict;
+  document.getElementById('card-rank').textContent = result.rank;
+  document.getElementById('card-chapter').textContent = result.chapter;
+  document.getElementById('card-status').textContent = result.status;
+
+  showScreen('result');
+}
+
+function resetQuiz() {
+  document.getElementById('player-name').value = '';
+  showScreen('landing');
+}
+
+// ══════════════════════════════════════════
+// LEADERBOARD
+// ══════════════════════════════════════════
+async function loadBoard() {
+  const members = await getMembers();
+  const listEl = document.getElementById('board-list');
+  const typeEmoji = { pigeon: '🐦', dove: '🕊️', hybrid: '🪶' };
+
+  // Stats
+  const pigeons = members.filter(m => m.type === 'pigeon').length;
+  const doves = members.filter(m => m.type === 'dove').length;
+  const hybrids = members.filter(m => m.type === 'hybrid').length;
+  document.getElementById('stat-total').textContent = members.length;
+  document.getElementById('stat-pigeons').textContent = pigeons;
+  document.getElementById('stat-doves').textContent = doves;
+  document.getElementById('stat-hybrid').textContent = hybrids;
+
+  if (members.length === 0) {
+    listEl.innerHTML = '<div class="board-empty">No members assessed yet. Be the first to take the quiz.</div>';
+    return;
+  }
+
+  listEl.innerHTML = '';
+  members.forEach((m, i) => {
+    const item = document.createElement('div');
+    item.className = 'board-item fade-in';
+    item.style.animationDelay = (i * 0.04) + 's';
+    item.innerHTML = `
+      <div class="board-rank ${i < 3 ? 'top' : ''}">${String(i+1).padStart(2,'0')}</div>
+      <div class="board-bird">${typeEmoji[m.type] || '🐦'}</div>
+      <div class="board-info">
+        <div class="board-name">${escHtml(m.name)}</div>
+        <div class="board-verdict">${escHtml(m.rank)} · ${escHtml(m.chapter)}</div>
+      </div>
+      <div class="board-type ${m.type}">${m.type}</div>
+    `;
+    item.onclick = () => showMemberDetail(m);
+    listEl.appendChild(item);
+  });
+}
+
+function showMemberDetail(m) {
+  // Reuse result screen to show any member's card
+  const typeLabels = { pigeon: 'True Pigeon.', dove: 'A Dove.', hybrid: 'Hybrid Species.' };
+  document.getElementById('card-number').textContent = `MEMBER RECORD`;
+  document.getElementById('card-type').textContent = typeLabels[m.type];
+  document.getElementById('card-type').className = 'card-type ' + m.type;
+  document.getElementById('card-name').textContent = m.name;
+  document.getElementById('card-verdict').textContent = m.verdict;
+  document.getElementById('card-rank').textContent = m.rank;
+  document.getElementById('card-chapter').textContent = m.chapter;
+  document.getElementById('card-status').textContent = m.status;
+  showScreen('result');
+}
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>
