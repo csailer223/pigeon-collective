@@ -5,3 +5,4 @@
   from = "/api/claude"
   to = "/.netlify/functions/claude"
   status = 200
+SECRETS_SCAN_OMIT_PATHS = "netlify/functions/claude.js"
